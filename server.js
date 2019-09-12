@@ -12,21 +12,22 @@ const url = require('url');
 
 function start(route, handle) {
     function onRequest(req, res) {
-        let postData = '';
+        // let postData = '';
         const pathname = url.parse(req.url).pathname;
         console.log('Request for ' + pathname + ' received');
+        route(handle, pathname, res, req);
 
-        req.setEncoding('utf8');
+        // req.setEncoding('utf8');
 
-        req.addListener('data', function(postDataChunk) {
-            postData += postDataChunk;
-            console.log('Received POST data chunk \'' +
-            postDataChunk + '\'.');
-        });
+        // req.addListener('data', function(postDataChunk) {
+        //     postData += postDataChunk;
+        //     console.log('Received POST data chunk \'' +
+        //     postDataChunk + '\'.');
+        // });
 
-        req.addListener('end', function() {
-            route(handle, pathname, res, postData);
-        });
+        // req.addListener('end', function() {
+        //     route(handle, pathname, res, postData);
+        // });
         // route(handle, pathname, res);
 
         // route(handle, pathname);
