@@ -14,13 +14,14 @@ function start(route, handle) {
     function onRequest(req, res) {
         const pathname = url.parse(req.url).pathname;
         console.log('Request for ' + pathname + ' received');
+        route(handle, pathname, res);
 
         // route(handle, pathname);
 
-        res.writeHead(200, { 'Content-Type': 'text/plain'});
-        const content = route(handle, pathname);
-        res.write(content);
-        res.end();
+        // res.writeHead(200, { 'Content-Type': 'text/plain'});
+        // const content = route(handle, pathname);
+        // res.write(content);
+        // res.end();
     }
     http.createServer(onRequest).listen(8888);
     console.log('Server has started');
